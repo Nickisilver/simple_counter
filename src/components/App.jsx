@@ -1,16 +1,20 @@
+import React from "react";
+import { BtnOpener } from "./BtnOpener/BtnOpener";
+import { Modal } from "./Modal/Modal";
+import css from './App.module.css'
+
 export const App = () => {
+
+const [visible, setViseble] = React.useState(false)
+
+
+function onBtnClick () {
+  setViseble(!visible)
+}
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className={css.wrapper}>
+     {!visible &&  <BtnOpener onClick={onBtnClick} action='✨ Click to open Modal window' />}
+      {visible && <Modal onClick={onBtnClick}  visible={visible} />}
     </div>
   );
 };

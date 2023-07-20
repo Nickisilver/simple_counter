@@ -1,0 +1,35 @@
+.backDrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ccc;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 750px;
+  min-height: 400px;
+  background-color: #fff;
+  position: relative;
+  padding: 40px;
+}
+
+.closeBtn {
+
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  /* padding: px; */
+  font-size: 24px;
+  border-radius: 50px;
+  border: none;
+
+  background-color: #cac3c3;
+}
+
+.iconWraper {
+  width: 100%;
+  height: auto;
+}
