@@ -1,0 +1,18 @@
+
+.Btn {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: skyblue;
+  transition: all linear 500ms;
+}
+
+.Btn:hover{
+background-color: yellow;
+scale: 1.08;
+}
+
+
+
