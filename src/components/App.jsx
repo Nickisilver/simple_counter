@@ -1,10 +1,9 @@
-import React from "react";
-import { Quiz } from "./Quiz/Quiz";
-import { EndGame } from "./EndGame/EndGame";
-import css from './App.module.css'
+import React from 'react';
+import { Quiz } from './Quiz/Quiz';
+import { EndGame } from './EndGame/EndGame';
+import css from './App.module.css';
 
 export const App = () => {
-
   const questions = [
     {
       title: 'React - это ... ?',
@@ -13,7 +12,11 @@ export const App = () => {
     },
     {
       title: 'Компонент - это ... ',
-      variants: ['приложение', 'часть приложения или страницы', 'то, что я не знаю что такое'],
+      variants: [
+        'приложение',
+        'часть приложения или страницы',
+        'то, что я не знаю что такое',
+      ],
       correct: 1,
     },
     {
@@ -28,22 +31,35 @@ export const App = () => {
   ];
 
   const [step, setStep] = React.useState(0);
+  const [count, setCount] = React.useState(0);
 
+  function onAnswer(index) {
+    setStep(step + 1);
+    correctAnswer(index)
+  }
+  function reset() {
+    setStep(0);
+  }
 
-function onAnswer () {
-  setStep(step + 1)
-}
-function reset () {
-  setStep(0)
-}
-
-const progress = ()=> {
- return  Math.round((step  / questions.length) * 100)
-}
+  function correctAnswer(ask) {
+    if(ask === questions[step].correct)(
+      setCount(count + 1)
+    )
+  }
 
   return (
     <div className={css.wrapper}>
-   {step !== questions.length ?  <Quiz question={questions[step]}  onClick={onAnswer} step={step} allQuestions={questions.length} /> : <EndGame reset={reset} />}
+      {step !== questions.length ? (
+        <Quiz
+          question={questions[step]}
+          onClick={onAnswer}
+          step={step}
+          allQuestions={questions.length}
+          
+        />
+      ) : (
+        <EndGame reset={reset} count={count} />
+      )}
     </div>
   );
 };
