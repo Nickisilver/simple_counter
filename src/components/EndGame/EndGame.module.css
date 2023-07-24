@@ -1,0 +1,23 @@
+.quizWrapper {
+  width: 600px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: turquoise;
+}
+
+.img {
+  font-size: 100px;
+}
+
+.btnReset {
+  border: none;
+  border-radius: 30px;
+  padding: 10px 15px;
+  background-color: hotpink;
+  font-size: 20px;
+}
+

@@ -1,37 +1,49 @@
 import React from "react";
-import { Counter } from "./Counter/Counter";
-import { Controle } from "./Controle/Controle";
+import { Quiz } from "./Quiz/Quiz";
+import { EndGame } from "./EndGame/EndGame";
 import css from './App.module.css'
 
 export const App = () => {
 
-const [count, setCount] = React.useState(0)
+  const questions = [
+    {
+      title: 'React - это ... ?',
+      variants: ['библиотека', 'фреймворк', 'приложение'],
+      correct: 0,
+    },
+    {
+      title: 'Компонент - это ... ',
+      variants: ['приложение', 'часть приложения или страницы', 'то, что я не знаю что такое'],
+      correct: 1,
+    },
+    {
+      title: 'Что такое JSX?',
+      variants: [
+        'Это простой HTML',
+        'Это функция',
+        'Это тот же HTML, но с возможностью выполнять JS-код',
+      ],
+      correct: 2,
+    },
+  ];
 
-function onAddClick () {
-  setCount(count + 1)
+  const [step, setStep] = React.useState(0);
+
+
+function onAnswer () {
+  setStep(step + 1)
+}
+function reset () {
+  setStep(0)
 }
 
-function onSubstactClick () {
-  setCount(count + 1)
+const progress = ()=> {
+ return  Math.round((step  / questions.length) * 100)
 }
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-     <Counter count={count} />
-     <div className={css.controlerWrapper}>
-      <Controle action='Віднімаємо -1' onClick={onAddClick} />
-      <Controle action='Додаємо +1' onClick={onSubstactClick} />
-     </div>
+    <div className={css.wrapper}>
+   {step !== questions.length ?  <Quiz question={questions[step]}  onClick={onAnswer} step={step} allQuestions={questions.length} /> : <EndGame reset={reset} />}
     </div>
   );
 };
